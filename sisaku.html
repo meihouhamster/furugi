@@ -3,29 +3,107 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>横に並べられたボタン</title>
   <style>
-    .button-container {
-      display: flex; /* Flexbox コンテナを使用 */
+    .buttons-container {
+      display: flex;
+      flex-wrap: wrap; /* ボタンが行を超えたら折り返す */
+      border: 1px solid #999;
+      max-height: 300px; /* 表示領域の最大高さ */
+      
     }
 
-    button {
-      flex: 1; /* 各ボタンが均等な幅を持つように */
-      padding: 10px;
-      margin: 5px;
+    .button-row {
+      display: flex;
+      padding: 10px; /* 上部の余白を追加 */
+      overflow-x: auto; /* 横スクロール可能にする */
+    }
+    .button-middle{
+        display: flex;
+        flex-wrap: wrap; /* ボタンが行を超えたら折り返す */
+        border: 1px solid #999;
+        max-height: 300px; /* 表示領域の最大高さ */
+        overflow-y: auto;
+    }
+    .button-high {
+        display: flex;
+        padding: 10px;
+    
+    }
+    .button-row button {
+      padding: 100px;
+      margin-right: 10px;
+      margin-bottom: 10px; /* ボタンとボタンの間に余白を追加 */
     }
   </style>
 </head>
 <body>
 
-<div class="button-container">
-  <button>トップス</button>
-  <button>ボトムス</button>
-  <button>下着・靴下</button>
-  <button>寝巻き</button>
-  <button>ボタン5</button>
-  <button>ボタン6</button>
-  <!-- 必要に応じてボタンを追加 -->
+<div class="buttons-container">
+  <div class="button-high">
+    <button>通常ボタン1</button>
+    <button>通常ボタン2</button>
+    <button>通常ボタン3</button>
+  </div>
+  <div class="button-middle">
+
+  <div class="button-row">
+    <button>ボタン1</button>
+    <button>ボタン2</button>
+    <button>ボタン3</button>
+    <button>ボタン4</button>
+    <button>ボタン5</button>
+    <button>ボタン6</button>
+    <button>ボタン7</button>
+    <button>ボタン8</button>
+    <button>ボタン9</button>
+    <button>ボタン10</button>
+    <button>ボタン11</button>
+    <button>ボタン12</button>
+    <button>ボタン13</button>
+    <button>ボタン14</button>
+    <button>ボタン15</button>
+    <button>ボタン16</button>
+    <button>ボタン17</button>
+    <button>ボタン18</button>
+    <button>ボタン19</button>
+    <button>ボタン20</button>
+  </div>
+
+  <div class="button-row">
+    <button>新しいボタン1</button>
+    <button>新しいボタン2</button>
+    <button>新しいボタン3</button>
+    <button>新しいボタン4</button>
+    <button>新しいボタン5</button>
+    <button>新しいボタン6</button>
+    <button>新しいボタン7</button>
+    <button>新しいボタン8</button>
+    <button>新しいボタン9</button>
+    <button>新しいボタン10</button>
+  </div>
+
+  <div class="button-row">
+    <button>追加ボタン1</button>
+    <button>追加ボタン2</button>
+    <button>追加ボタン3</button>
+    <button>追加ボタン4</button>
+    <button>追加ボタン5</button>
+    <button>追加ボタン6</button>
+    <button>追加ボタン7</button>
+    <button>追加ボタン8</button>
+    <button>追加ボタン9</button>
+    <button>追加ボタン10</button>
+  </div>
+
+  <!-- 新たに横にボタンを追加 -->
+  <div class="button-row">
+    <button>横追加ボタン1</button>
+    <button>横追加ボタン2</button>
+    <button>横追加ボタン3</button>
+    <button>横追加ボタン4</button>
+    <button>横追加ボタン5</button>
+  </div>
+  </div>
 </div>
 
 </body>
