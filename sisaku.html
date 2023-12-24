@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vouch</title>
   <style>
     .buttons-container {
       display: flex;
       flex-wrap: wrap; /* ボタンが行を超えたら折り返す */
-      border: 1px solid #999;
-      max-height: 300px; /* 表示領域の最大高さ */
-      
+      max-height: 1000px; /* 表示領域の最大高さ */
     }
 
     .button-row {
@@ -17,37 +16,78 @@
       padding: 10px; /* 上部の余白を追加 */
       overflow-x: auto; /* 横スクロール可能にする */
     }
-    .button-middle{
-        display: flex;
-        flex-wrap: wrap; /* ボタンが行を超えたら折り返す */
-        border: 1px solid #999;
-        max-height: 300px; /* 表示領域の最大高さ */
-        overflow-y: auto;
-    }
     .button-high {
         display: flex;
         padding: 10px;
-    
+    }
+    .button-high button {
+      width: 480px;
     }
     .button-row button {
-      padding: 100px;
+      padding: 6%;
       margin-right: 10px;
       margin-bottom: 10px; /* ボタンとボタンの間に余白を追加 */
     }
+    body {
+            font-family: Arial, sans-serif;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-text {
+            margin-right: 10px;
+        }
+
+        /* 検索フォームのスタイル（適宜調整） */
+        form {
+            margin: 0;
+            padding-left: 40px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+        }
+
+        input[type="submit"] {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .rogin{
+          margin-left: 1000px;
+        }
+          
   </style>
 </head>
 <body>
+ <!-- 検索エンジンとテキストのコンテナ -->
+ <div class="search-container">
+  <h1>vouch</h1>
 
+  <!-- 検索フォーム -->
+  <form action="https://www.example.com/search" method="get">
+      <input type="text" id="search" name="q" placeholder="キーワードを入力">
+      <input type="submit" value="検索">
+  </form>
+  <div class="rogin"><a href="./test2.html">マイページ</a></div>
+</div>
 <div class="buttons-container">
   <div class="button-high">
     <button>通常ボタン1</button>
     <button>通常ボタン2</button>
     <button>通常ボタン3</button>
   </div>
-  <div class="button-middle">
-
   <div class="button-row">
-    <button>ボタン1</button>
+    <input type="image" src="data:image/png;base64,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" alt="ボタン">
     <button>ボタン2</button>
     <button>ボタン3</button>
     <button>ボタン4</button>
@@ -67,42 +107,6 @@
     <button>ボタン18</button>
     <button>ボタン19</button>
     <button>ボタン20</button>
-  </div>
-
-  <div class="button-row">
-    <button>新しいボタン1</button>
-    <button>新しいボタン2</button>
-    <button>新しいボタン3</button>
-    <button>新しいボタン4</button>
-    <button>新しいボタン5</button>
-    <button>新しいボタン6</button>
-    <button>新しいボタン7</button>
-    <button>新しいボタン8</button>
-    <button>新しいボタン9</button>
-    <button>新しいボタン10</button>
-  </div>
-
-  <div class="button-row">
-    <button>追加ボタン1</button>
-    <button>追加ボタン2</button>
-    <button>追加ボタン3</button>
-    <button>追加ボタン4</button>
-    <button>追加ボタン5</button>
-    <button>追加ボタン6</button>
-    <button>追加ボタン7</button>
-    <button>追加ボタン8</button>
-    <button>追加ボタン9</button>
-    <button>追加ボタン10</button>
-  </div>
-
-  <!-- 新たに横にボタンを追加 -->
-  <div class="button-row">
-    <button>横追加ボタン1</button>
-    <button>横追加ボタン2</button>
-    <button>横追加ボタン3</button>
-    <button>横追加ボタン4</button>
-    <button>横追加ボタン5</button>
-  </div>
   </div>
 </div>
 

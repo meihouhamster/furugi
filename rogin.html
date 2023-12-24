@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/3.5.2/firebase-ui-auth__ja.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+</head>
+<body>
+    <div id="firebaseui-auth-container"></div>
+
+    <script>
+        // Firebaseの初期化
+        const firebaseConfig = {
+            apiKey: "AIzaSyDKfERS_ATIs-ueIT8NMQuhazBx-uCl5WU",
+            authDomain: "vouch-1c4b7.firebaseapp.com",
+            projectId: "vouch-1c4b7",
+            storageBucket: "vouch-1c4b7.appspot.com",
+            messagingSenderId: "802519104562",
+            appId: "1:802519104562:web:9f76e8fa1e44d84342d02b",
+            measurementId: "G-JLT83S58PD"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        // FirebaseUIの設定
+        var ui = new firebaseui.auth.AuthUI(firebase.auth());
+
+        // FirebaseUIの構成
+        var uiConfig = {
+            callbacks: {
+                signInSuccessWithAuthResult: function () {
+                    window.location.href = 'sisaku.html';  
+                    return false;  
+                },
+            },
+            signInFlow: 'popup',
+            signInOptions: [
+                firebase.auth.EmailAuthProvider.PROVIDER_ID
+            ],
+            language: 'ja'
+        };
+
+        // FirebaseUIの開始
+        ui.start('#firebaseui-auth-container', uiConfig);
+    </script>
+</body>
+</html>
