@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-firestore.js"></script>
   <title>vouch</title>
   <style>
     .buttons-container {
@@ -65,6 +67,23 @@
         .rogin{
           margin-left: 1000px;
         }
+        #products-list {
+        list-style-type: none;
+        display: flex;
+        flex-wrap: wrap; /* 画面からはみ出たら下の行に折り返す */
+        gap: 10px; /* 画像間のマージン */
+    }
+
+    #products-list li {
+        flex: 0 0 calc(20% - 10px); /* 3列に分割し、マージンを考慮 */
+        box-sizing: border-box;
+    }
+
+    #products-list img {
+        width: 100%; /* 親要素の幅いっぱいに広げる */
+        height: auto; /* 高さは自動調整 */
+        cursor: pointer; /* カーソルをポインターに変更 */
+    }
           
   </style>
 </head>
@@ -109,6 +128,67 @@
     <button>ボタン20</button>
   </div>
 </div>
+<ul id="products-list"></ul>
+
+<script>
+    // Firebaseの初期化
+    var firebaseConfig = {
+        apiKey: "AIzaSyDKfERS_ATIs-ueIT8NMQuhazBx-uCl5WU",
+        authDomain: "vouch-1c4b7.firebaseapp.com",
+        projectId: "vouch-1c4b7",
+        storageBucket: "vouch-1c4b7.appspot.com",
+        messagingSenderId: "802519104562",
+        appId: "1:802519104562:web:9f76e8fa1e44d84342d02b",
+        measurementId: "G-JLT83S58PD"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    // Firestoreの参照
+    var db = firebase.firestore();
+
+    // "products"コレクションからデータを取得
+    db.collection("products").get().then((querySnapshot) => {
+        // 取得したデータを処理
+        querySnapshot.forEach((doc) => {
+            // 各ドキュメントのデータを取得
+            var productData = doc.data();
+
+            // URLを取得
+            var imageURL = productData.URL;
+
+            // 取得したデータをHTMLに表示
+            displayProduct(imageURL);
+
+        });
+    });
+
+    function displayProduct(imageURL) {
+        // 新しいリストアイテムを作成
+        var listItem = document.createElement("li");
+
+        // 新しいイメージ要素を作成
+        var imageElement = document.createElement("img");
+
+        // イメージ要素のsrc属性にURLを設定
+        imageElement.src = imageURL;
+
+        // イメージ要素をリストアイテムに追加
+        listItem.appendChild(imageElement);
+
+        // リストアイテムをul要素に追加
+        document.getElementById("products-list").appendChild(listItem);
+
+         // イメージがクリックされたときのイベントリスナーを追加
+         imageElement.addEventListener("click", function() {
+            // "product.html" に遷移する
+            window.location.href = "product.html";
+        });
+    }
+
+</script>
+
+
 
 </body>
 </html>
