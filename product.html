@@ -66,6 +66,28 @@
   <title>商品ページ</title>
 </head>
 <body>
+  <h1 id="product-title"></h1>
+  <p id="product-value"></p>
+  <script>
+    // 製品詳細ページでのコード
+window.onload = function() {
+    // URLのクエリパラメータから情報を取得
+    var urlParams = new URLSearchParams(window.location.search);
+    var imageURL = urlParams.get('imageURL');
+    var productName = urlParams.get('productName');
+    var price = urlParams.get('price');
+    var brand = urlParams.get('brand');
+
+    // 商品詳細を表示
+    document.getElementById("product-title").innerText = productName;
+    document.getElementById("product-value").innerText = "価格: " + price;
+    
+    // 他の詳細情報も表示できるようにする（適切なHTML要素を用意する必要があります）
+
+   
+};
+
+  </script>
 
 
 
@@ -141,5 +163,6 @@
 
   <!-- 他の商品やコンテンツを追加できます -->
   <p>aaaaaaa</p>
+  
 </body>
 </html>

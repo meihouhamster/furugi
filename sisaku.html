@@ -144,47 +144,46 @@
 
     firebase.initializeApp(firebaseConfig);
 
-    // Firestoreの参照
-    var db = firebase.firestore();
+// Firestoreの参照
+var db = firebase.firestore();
 
-    // "products"コレクションからデータを取得
-    db.collection("products").get().then((querySnapshot) => {
-        // 取得したデータを処理
-        querySnapshot.forEach((doc) => {
-            // 各ドキュメントのデータを取得
-            var productData = doc.data();
+// "products"コレクションからデータを取得
+db.collection("products").get().then((querySnapshot) => {
+    // 取得したデータを処理
+    querySnapshot.forEach((doc) => {
+        // 各ドキュメントのデータを取得
+        var productData = doc.data();
 
-            // URLを取得
-            var imageURL = productData.URL;
+        // URLを取得
+        var imageURL = productData.URL;
 
-            // 取得したデータをHTMLに表示
-            displayProduct(imageURL);
-
-        });
+        // 取得したデータをHTMLに表示
+        displayProduct(imageURL, productData);
     });
+});
 
-    function displayProduct(imageURL) {
-        // 新しいリストアイテムを作成
-        var listItem = document.createElement("li");
+function displayProduct(imageURL, productData) {
+    // 新しいリストアイテムを作成
+    var listItem = document.createElement("li");
 
-        // 新しいイメージ要素を作成
-        var imageElement = document.createElement("img");
+    // 新しいイメージ要素を作成
+    var imageElement = document.createElement("img");
 
-        // イメージ要素のsrc属性にURLを設定
-        imageElement.src = imageURL;
+    // イメージ要素のsrc属性にURLを設定
+    imageElement.src = imageURL;
 
-        // イメージ要素をリストアイテムに追加
-        listItem.appendChild(imageElement);
+    // イメージ要素をリストアイテムに追加
+    listItem.appendChild(imageElement);
 
-        // リストアイテムをul要素に追加
-        document.getElementById("products-list").appendChild(listItem);
+    // リストアイテムをul要素に追加
+    document.getElementById("products-list").appendChild(listItem);
 
-         // イメージがクリックされたときのイベントリスナーを追加
-         imageElement.addEventListener("click", function() {
-            // "product.html" に遷移する
-            window.location.href = "product.html";
-        });
-    }
+    // イメージがクリックされたときのイベントリスナーを追加
+    imageElement.addEventListener("click", function() {
+        // "product.html" に遷移する
+        window.location.href = "product.html?imageURL=" + encodeURIComponent(imageURL) + "&productName=" + encodeURIComponent(productData.title) + "&price=" + encodeURIComponent(productData.value) + "&brand=" + encodeURIComponent(productData.brand);
+    });
+}
 
 </script>
 
