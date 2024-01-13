@@ -8,6 +8,8 @@
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
+      background-color: black;
+      color: #fff;
     }
 
     .product-container {
@@ -62,29 +64,44 @@
       cursor: pointer;
       font-size: 1em;
     }
+    .syouhinnmei {
+      font-size: 300%;
+      line-height: 0.1;
+      color: green;
+    }
   </style>
   <title>商品ページ</title>
 </head>
 <body>
-  <h1 id="product-title"></h1>
-  <p id="product-value"></p>
+  
   <script>
     // 製品詳細ページでのコード
-window.onload = function() {
+  window.onload = function() {
     // URLのクエリパラメータから情報を取得
     var urlParams = new URLSearchParams(window.location.search);
     var imageURL = urlParams.get('imageURL');
     var productName = urlParams.get('productName');
-    var price = urlParams.get('price');
+    var value = urlParams.get('value');
     var brand = urlParams.get('brand');
+    var category = urlParams.get('category');
+    var info = urlParams.get('info');
+    var quality = urlParams.get('quality');
+    var seller = urlParams.get('seller');
+    var size = urlParams.get('size');
+    var time = urlParams.get('time');
 
     // 商品詳細を表示
+    document.getElementById('product-image').src = imageURL;
     document.getElementById("product-title").innerText = productName;
-    document.getElementById("product-value").innerText = "価格: " + price;
-    
+    document.getElementById("product-value").innerText = "価格: " + value + "円";
+    document.getElementById("product-brand").innerText = "ブランド: " + brand;
+    document.getElementById("product-category").innerText = "カテゴリー: " + category;
+    document.getElementById("product-info").innerText = "情報: " + info;
+    document.getElementById("product-quality").innerText = "質: " + quality;
+    document.getElementById("product-seller").innerText = "販売者: " + seller;
+    document.getElementById("product-size").innerText = "サイズ: " + size;
+    document.getElementById("product-time").innerText = "時間: " + time;
     // 他の詳細情報も表示できるようにする（適切なHTML要素を用意する必要があります）
-
-   
 };
 
   </script>
@@ -94,28 +111,25 @@ window.onload = function() {
   <div class="product-container">
 
     <div class="product-image">
-      <img src="https://geinouzin.net/wp-content/uploads/2018/05/hika5.jpg" alt="商品画像">
-      <div class="image-divider">
-      </div>
+       <!-- ここに画像が表示されます -->
+    <img id="product-image" alt="商品画像">
+    <!-- 他の商品詳細はここに追加できます -->
+      
     </div>
-
     <div class="product-details">
-      <h1>商品名</h1>
-      <p>サイズ：ｓ</p>
-      <p class="price">価格: $19.99</p>
-      <h3 class="product-explain">商品の説明</h3>
-      <p>商品の説明がここに入ります。商品の特徴や魅力を伝えましょう。</p>
-      <p>a</p>
-      <p>a</p>
-
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
+      <div class="syouhinnmei">
+      <p>商品名</p>
+      <p id="product-title"></p>
+    </div>
+  <p id="product-value"></p>
+  <p id="product-brand"></p>
+  <p id="product-category"></p>
+  <p id="product-quality"></p>
+  <p id="product-size"></p>
+  <h3 class="product-explain">商品の説明</h3>
+  <p id="product-info"></p>
+  <p id="product-seller"></p>
+  <p id="product-time"></p>
       <p>a</p>
       <p>a</p>
       <p>a</p>
@@ -143,8 +157,16 @@ window.onload = function() {
       <p>a</p>
       <p>a</p>
       <p>a</p>
-
-
+      <p>a</p>
+      <p>a</p>
+      <p>a</p>
+      <p>a</p>
+      <p>a</p>
+      <p>a</p>
+      <p>a</p>
+      <p>a</p>
+      <p>a</p>
+      <p>a</p>
       <p>a</p>
       <p>a</p>
       <p>a</p>

@@ -7,6 +7,11 @@
   <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-firestore.js"></script>
   <title>vouch</title>
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: black;
+      color: #fff;
+    }
     .buttons-container {
       display: flex;
       flex-wrap: wrap; /* ボタンが行を超えたら折り返す */
@@ -17,6 +22,7 @@
       display: flex;
       padding: 10px; /* 上部の余白を追加 */
       overflow-x: auto; /* 横スクロール可能にする */
+      overflow-y: hidden;
     }
     .button-high {
         display: flex;
@@ -24,15 +30,27 @@
     }
     .button-high button {
       width: 480px;
+      cursor: pointer;
+      background-color: darkgray;
     }
     .button-row button {
-      padding: 6%;
-      margin-right: 10px;
-      margin-bottom: 10px; /* ボタンとボタンの間に余白を追加 */
+      display: inline-block;
+      white-space: nowrap;
+            width: 50px; /* 幅を指定 */
+            height: 50px; /* 高さを指定 */
+            font-size: 5px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 50%; /* ボタンを丸くするための設定 */
+            background-color: darkgray; /* ボタンの背景色 */
+            color: black; /* ボタンのテキスト色 */
+            border: none; /* ボタンのボーダーをなくす */
+            padding: 50px; /* パディングをなくす */
+            margin: 20px; /* 余白を調整 */
+            text-indent: -17px;
+            line-height: 5px;
     }
-    body {
-            font-family: Arial, sans-serif;
-        }
 
         .search-container {
             display: flex;
@@ -66,6 +84,11 @@
         }
         .rogin{
           margin-left: 1000px;
+        }
+        a {
+          color: inherit;
+          text-decoration: none;
+          text-decoration-line: underline;
         }
         #products-list {
         list-style-type: none;
@@ -106,7 +129,7 @@
     <button>通常ボタン3</button>
   </div>
   <div class="button-row">
-    <input type="image" src="data:image/png;base64,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" alt="ボタン">
+    <button>ボタン1</button>
     <button>ボタン2</button>
     <button>ボタン3</button>
     <button>ボタン4</button>
@@ -178,10 +201,22 @@ function displayProduct(imageURL, productData) {
     // リストアイテムをul要素に追加
     document.getElementById("products-list").appendChild(listItem);
 
+  
     // イメージがクリックされたときのイベントリスナーを追加
     imageElement.addEventListener("click", function() {
         // "product.html" に遷移する
-        window.location.href = "product.html?imageURL=" + encodeURIComponent(imageURL) + "&productName=" + encodeURIComponent(productData.title) + "&price=" + encodeURIComponent(productData.value) + "&brand=" + encodeURIComponent(productData.brand);
+        window.location.href = "product.html?imageURL=" + encodeURIComponent(imageURL) +
+            "&productName=" + encodeURIComponent(productData.title) +
+            "&value=" + encodeURIComponent(productData.value) +
+            "&brand=" + encodeURIComponent(productData.brand) +
+            "&category=" + encodeURIComponent(productData.category) +
+            "&info=" + encodeURIComponent(productData.info) +
+            "&quality=" + encodeURIComponent(productData.quality) +
+            "&seller=" + encodeURIComponent(productData.seller) +
+            "&size=" + encodeURIComponent(productData.size) +
+            "&time=" + encodeURIComponent(productData.time);
+
+            
     });
 }
 
