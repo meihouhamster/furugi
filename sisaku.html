@@ -29,9 +29,9 @@
         padding: 10px;
     }
     .button-high button {
-      width: 480px;
+      width: 204px;
       cursor: pointer;
-      background-color: darkgray;
+      background-color: rgb(113, 113, 113);
     }
     .button-row button {
       display: inline-block;
@@ -43,14 +43,16 @@
             text-decoration: none;
             cursor: pointer;
             border-radius: 50%; /* ボタンを丸くするための設定 */
-            background-color: darkgray; /* ボタンの背景色 */
+            background-color: rgb(113, 113, 113); /* ボタンの背景色 */
             color: black; /* ボタンのテキスト色 */
             border: none; /* ボタンのボーダーをなくす */
             padding: 50px; /* パディングをなくす */
             margin: 20px; /* 余白を調整 */
-            text-indent: -17px;
+            text-indent: -30px;
             line-height: 5px;
     }
+    
+    
 
         .search-container {
             display: flex;
@@ -77,7 +79,7 @@
 
         input[type="submit"] {
             padding: 5px 10px;
-            background-color: #007bff;
+            background-color: #ffbb00;
             color: #fff;
             border: none;
             cursor: pointer;
@@ -107,6 +109,12 @@
         height: auto; /* 高さは自動調整 */
         cursor: pointer; /* カーソルをポインターに変更 */
     }
+    h1 {
+      display: inline-block;
+      background-image: linear-gradient(to right, rgb(255, 251, 0), rgb(255, 208, 0), rgb(255, 153, 0), rgb(255, 129, 2), rgb(255, 81, 0), rgb(255, 51, 0), red);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
           
   </style>
 </head>
@@ -116,37 +124,41 @@
   <h1>vouch</h1>
 
   <!-- 検索フォーム -->
-  <form action="https://www.example.com/search" method="get">
-      <input type="text" id="search" name="q" placeholder="キーワードを入力">
-      <input type="submit" value="検索">
-  </form>
+  <form id="searchForm">
+    <input type="text" id="search" name="q" placeholder="キーワードを入力">
+    <input type="submit" value="検索">
+</form>
   <div class="rogin"><a href="./test2.html">マイページ</a></div>
 </div>
 <div class="buttons-container">
   <div class="button-high">
-    <button>通常ボタン1</button>
-    <button>通常ボタン2</button>
-    <button>通常ボタン3</button>
+    <button>トップス</button>
+    <button>ジャケット/アウター</button>
+    <button>パンツ</button>
+    <button>ルームウェア/パジャマ</button>
+    <button>スーツ/フォーマル/ドレス</button>
+    <button>レッグウェア</button>
+    <button>アンダーウェア</button>
   </div>
   <div class="button-row">
-    <button>ボタン1</button>
-    <button>ボタン2</button>
-    <button>ボタン3</button>
-    <button>ボタン4</button>
-    <button>ボタン5</button>
-    <button>ボタン6</button>
-    <button>ボタン7</button>
-    <button>ボタン8</button>
-    <button>ボタン9</button>
-    <button>ボタン10</button>
-    <button>ボタン11</button>
-    <button>ボタン12</button>
-    <button>ボタン13</button>
-    <button>ボタン14</button>
-    <button>ボタン15</button>
-    <button>ボタン16</button>
-    <button>ボタン17</button>
-    <button>ボタン18</button>
+    <button>NIKE</button>
+    <button>adidas</button>
+    <button>GU</button>
+    <button>UNIQULO</button>
+    <button>DELL</button>
+    <button>H&M</button>
+    <button>ZARA</button>
+    <button>Champion</button>
+    <button>Levi's</button>
+    <button>FORTRAN</button>
+    <button>WEGO</button>
+    <button>Right-on</button>
+    <button>BEAMS</button>
+    <button>The North Face</button>
+    <button>montbell</button>
+    <button>Patagonia</button>
+    <button>GAP</button>
+    <button>Apple</button>
     <button>ボタン19</button>
     <button>ボタン20</button>
   </div>
@@ -201,9 +213,8 @@ function displayProduct(imageURL, productData) {
     // リストアイテムをul要素に追加
     document.getElementById("products-list").appendChild(listItem);
 
-  
     // イメージがクリックされたときのイベントリスナーを追加
-    imageElement.addEventListener("click", function() {
+    imageElement.addEventListener("click", function () {
         // "product.html" に遷移する
         window.location.href = "product.html?imageURL=" + encodeURIComponent(imageURL) +
             "&productName=" + encodeURIComponent(productData.title) +
@@ -214,11 +225,102 @@ function displayProduct(imageURL, productData) {
             "&quality=" + encodeURIComponent(productData.quality) +
             "&seller=" + encodeURIComponent(productData.seller) +
             "&size=" + encodeURIComponent(productData.size) +
-            "&time=" + encodeURIComponent(productData.time);
-
-            
+            "&time=" + encodeURIComponent(productData.time.toDate()); // timestampをDateに変換
     });
 }
+
+// ボタン要素を取得
+var buttons = document.querySelectorAll('.button-row button');
+
+// 各ボタンにクリックイベントを追加
+buttons.forEach(function(button) {
+    button.addEventListener('click', function() {
+        var selectedBrand = this.textContent; // ボタンのテキストがbrandの値として使用されると仮定
+
+        // 画像リストをリセット
+        document.getElementById("products-list").innerHTML = "";
+
+        // "products"コレクションから特定のbrandのデータを取得
+        db.collection("products").where("brand", "==", selectedBrand).get().then((querySnapshot) => {
+            // 取得したデータを処理
+            querySnapshot.forEach((doc) => {
+                // 各ドキュメントのデータを取得
+                var productData = doc.data();
+
+                // URLを取得
+                var imageURL = productData.URL;
+
+                // 取得したデータをHTMLに表示
+                displayProduct(imageURL, productData);
+            });
+        });
+    });
+});
+// フォーム要素を取得
+var searchForm = document.getElementById('searchForm');
+
+// フォームが送信されたときのイベントリスナーを追加
+searchForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // デフォルトのフォーム送信を防ぐ
+
+    var searchTerm = document.getElementById('search').value.toLowerCase();
+
+    // 画像リストをリセット
+    document.getElementById("products-list").innerHTML = "";
+
+    // "products"コレクションから部分一致するtitleのデータを取得
+    db.collection("products").get().then((querySnapshot) => {
+        // 取得したデータを処理
+        querySnapshot.forEach((doc) => {
+            // 各ドキュメントのデータを取得
+            var productData = doc.data();
+
+            // titleを小文字に変換してから検索
+            var title = productData.title.toLowerCase();
+            
+            // 入力されたキーワードがtitleに含まれるか検証
+            if (title.includes(searchTerm)) {
+                // URLを取得
+                var imageURL = productData.URL;
+
+                // 取得したデータをHTMLに表示
+                displayProduct(imageURL, productData);
+            }
+        });
+    });
+});
+// ボタン要素を取得（button-highのボタン）
+var highButtons = document.querySelectorAll('.button-high button');
+
+// 各ボタンにクリックイベントを追加
+highButtons.forEach(function (button) {
+  button.addEventListener('click', function () {
+    var selectedCategory = this.textContent; // ボタンのテキストがcategoryの値として使用されると仮定
+
+    // 画像リストをリセット
+    document.getElementById("products-list").innerHTML = "";
+
+    // "products"コレクションから特定のcategoryのデータを取得
+    db.collection("products").where("category", "==", selectedCategory).get().then((querySnapshot) => {
+      // 取得したデータを処理
+      querySnapshot.forEach((doc) => {
+        // 各ドキュメントのデータを取得
+        var productData = doc.data();
+
+        // URLを取得
+        var imageURL = productData.URL;
+
+        // 取得したデータをHTMLに表示
+        displayProduct(imageURL, productData);
+      });
+    });
+  });
+});
+
+
+
+
+
 
 </script>
 

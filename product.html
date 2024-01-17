@@ -14,33 +14,28 @@
 
     .product-container {
       display: flex;
-      max-width: 800px;
+      max-width: 100%;
+      max-height: 1000px;
       margin: 50px auto;
     }
 
     .product-image {
-      flex: 1;
-      position: relative;
+      margin-left: 260px;
+      margin-right: 10px;
+      padding-right: 0;
     }
 
     .product-image img {
-      width: 100%;
+      width: 500px;
       height: auto;
-    }
-
-    .image-divider{
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background-color: #ccc;
+      padding-right: 0;
+      margin-right: 0;
     }
 
     .product-details {
-      flex: 1;
       padding: 20px;
-      overflow-y: auto; /* 右半分の領域にスクロールを有効にする */
+      padding-left: 0;
+      margin-left: 0;
     }
 
     .price {
@@ -57,7 +52,7 @@
 
 
     .buy-button {
-      background-color: #3498db;
+      background-color: #db3434;
       color: #fff;
       padding: 10px;
       border: none;
@@ -67,7 +62,7 @@
     .syouhinnmei {
       font-size: 300%;
       line-height: 0.1;
-      color: green;
+      color: #ffbb00;
     }
   </style>
   <title>商品ページ</title>
@@ -76,7 +71,7 @@
   
   <script>
     // 製品詳細ページでのコード
-  window.onload = function() {
+    window.onload = function () {
     // URLのクエリパラメータから情報を取得
     var urlParams = new URLSearchParams(window.location.search);
     var imageURL = urlParams.get('imageURL');
@@ -90,6 +85,9 @@
     var size = urlParams.get('size');
     var time = urlParams.get('time');
 
+    // timestampをDateに変換
+    var date = new Date(time);
+
     // 商品詳細を表示
     document.getElementById('product-image').src = imageURL;
     document.getElementById("product-title").innerText = productName;
@@ -100,9 +98,9 @@
     document.getElementById("product-quality").innerText = "質: " + quality;
     document.getElementById("product-seller").innerText = "販売者: " + seller;
     document.getElementById("product-size").innerText = "サイズ: " + size;
-    document.getElementById("product-time").innerText = "時間: " + time;
-    // 他の詳細情報も表示できるようにする（適切なHTML要素を用意する必要があります）
+    document.getElementById("product-time").innerText = "時間: " + date.toLocaleString(); // 日付に変換して表示
 };
+
 
   </script>
 
@@ -130,51 +128,7 @@
   <p id="product-info"></p>
   <p id="product-seller"></p>
   <p id="product-time"></p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>a</p>
-      <p>bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</p>
+      
 
 
       <button class="buy-button">購入する</button>
@@ -182,9 +136,6 @@
   </div>
 
 
-
-  <!-- 他の商品やコンテンツを追加できます -->
-  <p>aaaaaaa</p>
   
 </body>
 </html>
